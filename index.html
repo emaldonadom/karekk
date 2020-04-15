@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>KAREKK</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style type="text/css">
+        body{
+            background-color: #999;
+        }
+    	#izquierda{
+    		width: 10%;
+    		height: 100%;
+    		position: absolute;
+            top: 20%;
+    	}
+    	#derecha{
+    		width: 10%;
+    		height: 100%;
+    		position: absolute;
+    		right: 0px;
+            top: 20%;
+    	}
+    	#arriba{
+    		width: 100%;
+    		height: 10%;
+    		position: relative;
+    		top: 0px;
+    		text-align: center;
+    	}
+    	#abajo{
+    		width: 100%;
+    		height: 10%;
+    		position: relative;
+            text-align: center;
+    		bottom: 0px;
+    	}
+        #centro{
+            margin: auto;
+            width: 50%;
+            border: 3px solid green;
+            padding: 10px;
+            position: relative;
+            height: 400px;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="titulo"><h1>KAREKK</h1></div>
+    <div id="contenido" class="container">
+        <div id="arriba">
+            <h3>Jugador 3</h3>
+            <p>
+                carta 1 - carta 2 - carta 3
+            </p>
+        </div>
+
+        <div id="centro">
+            
+        </div>
+        <div id="izquierda">
+            <h3>Jugador 1</h3>
+            <p><div style="background-color: black" id="jugador1cartaabajo1"></div></p>
+            <p><div style="background-color: black" id="jugador1cartaabajo2"></div></p>
+            <p><div style="background-color: black" id="jugador1cartaabajo3"></div></p>
+            <br>
+            <p><div id="jugador1cartaarriba1"></div></p>
+            <p><div id="jugador1cartaarriba2"></div></p>
+            <p><div id="jugador1cartaarriba3"></div></p>
+        </div>
+		<div id="derecha">
+            <h3>Jugador 2</h3>
+            <p><div style="background-color: black" id="jugador2cartaabajo1"></div></p>
+            <p><div style="background-color: black" id="jugador2cartaabajo2"></div></p>
+            <p><div style="background-color: black" id="jugador2cartaabajo3"></div></p>  
+            <br>
+            <p><div id="jugador2cartaarriba1"></div></p>
+            <p><div id="jugador2cartaarriba2"></div></p>
+            <p><div id="jugador2cartaarriba3"></div></p>  
+        </div>
+		<div id="abajo">
+            <h3>Jugador 4</h3>
+            carta 1 - carta 2 - carta 3     
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        //inicio del juego
+        var cartasIniciales = [];
+        var cantidad_jugadores = preguntaCantidadWeones();
+        var bocaabajo = [];
+
+        //entregar 3 cartas boca abajo a cada jugador
+        for (var i = 0; i < cantidad_jugadores; i++) {
+            var tres_cartas = tresCartas();
+        }
+        for (var i = 0; i < tres_cartas.length; i++) {
+            bocaabajo.push(tres_cartas[i]);
+        }
+
+        console.log(bocaabajo);
+
+
+        //tirar cartas boca abajo a participantes
+        for (var i = 0; i < bocaabajo.length; i++) {
+            //tres primeras cartas jugador 1
+            if (i == 0) {
+                $('#jugador1cartaabajo1').html(bocaabajo[i]);
+            }
+            if (i == 1) {
+                $('#jugador1cartaabajo2').html(bocaabajo[i]);
+            }
+            if (i == 2) {
+                $('#jugador1cartaabajo3').html(bocaabajo[i]);
+            }
+            if (i > 2) {
+                //tres primeras cartas jugador2
+                if (i == 3) {
+                    $('#jugador2cartaabajo1').html(bocaabajo[i]);
+                }
+                if (i == 4) {
+                    $('#jugador2cartaabajo2').html(bocaabajo[i]);
+                }
+                if (i == 5) {
+                    $('#jugador2cartaabajo3').html(bocaabajo[i]);
+                }
+            }
+        }
+
+        //tirar cartas boca arriba a participantes
+        for (var i = 0; i < bocaabajo.length; i++) {
+            //tres primeras cartas jugador 1
+            if (i == 0) {
+                $('#jugador1cartaarriba1').html(bocaabajo[i]);
+            }
+            if (i == 1) {
+                $('#jugador1cartaarriba2').html(bocaabajo[i]);
+            }
+            if (i == 2) {
+                $('#jugador1cartaarriba3').html(bocaabajo[i]);
+            }
+            if (i > 2) {
+                //tres primeras cartas jugador2
+                if (i == 3) {
+                    $('#jugador2cartaarriba1').html(bocaabajo[i]);
+                }
+                if (i == 4) {
+                    $('#jugador2cartaarriba2').html(bocaabajo[i]);
+                }
+                if (i == 5) {
+                    $('#jugador2cartaarriba3').html(bocaabajo[i]);
+                }
+            }
+        }
+
+
+        //funciones JavaScript
+        function getRandomNumber(){
+            var random_number = Math.floor((Math.random() * 52) + 1); // 13 = joker
+            return random_number;
+        }
+        function tresCartas(){
+            for (var i = 0; i < 3; i++) {
+                cartasIniciales.push(getRandomNumber());
+            }
+            return cartasIniciales;
+        }
+        function preguntaCantidadWeones(){
+            var cant = prompt("Ingresar cantidad de jugadores");
+            let bar = confirm('Confirm or deny');
+            return cant;
+        }
+    </script>
+  </body>
+</html>
